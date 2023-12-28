@@ -1,17 +1,20 @@
 import styled from "styled-components";
 import cross from "../assets/cross.svg";
+import triangle from "../assets/triangle.svg";
 
 function Bike() {
   return (
     <BikeList>
       <BikeItem>
         <BikeInfo>
-          <p>name - type (color)</p>
-          <p>id: xxxxxxxxxxxxx</p>
           <p>
-            status: <label>available</label>
-            <img />
+            <Name>name</Name> - type (color)
           </p>
+          <Id>id: xxxxxxxxxxxxx</Id>
+          <Status>
+            status: <StatusValue>available</StatusValue>
+            <img src={triangle} />
+          </Status>
         </BikeInfo>
 
         <BikePrice>
@@ -26,17 +29,17 @@ function Bike() {
 export default Bike;
 
 const BikeList = styled.ul`
-  position: absolute;
   top: 42px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: start;
+  gap: 12px;
   width: 50%;
   height: calc(100vh - 84px);
   padding: 12px 9px 0px 12px;
-  /* background-color: red; */
   border-right: 1px solid #c4c4c4;
+  overflow: auto;
 `;
 
 const BikeItem = styled.li`
@@ -48,10 +51,17 @@ const BikeItem = styled.li`
   padding: 12px 12px 12px 18px;
   border-radius: 10px;
   border: 2px solid #6fcf97; //!TODO Should depend on items status
+
+  p {
+    text-transform: uppercase;
+    color: #333;
+  }
 `;
 
-const Name = styled.h3`
+const Name = styled.label`
   text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 700;
 `;
 
 const BikeInfo = styled.div`
@@ -79,6 +89,24 @@ const BikePrice = styled.div`
   }
 `;
 
-const Id = styled.p``;
+const Id = styled.p`
+  text-transform: uppercase;
+  color: #717171;
+  font-size: 8px;
+`;
 
-const Status = styled.p``;
+const Status = styled.p`
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 400;
+
+  img {
+    margin-left: 3px;
+  }
+`;
+
+const StatusValue = styled.label`
+  text-transform: capitalize;
+  margin-left: 18px;
+`;

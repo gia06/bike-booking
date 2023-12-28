@@ -6,7 +6,7 @@ function Header() {
 export default Header;
 
 const HeaderWrapper = styled.header`
-  position: absolute;
+  /* position: absolute; */
   width: 100%;
   height: 42px;
   background: #696969;
