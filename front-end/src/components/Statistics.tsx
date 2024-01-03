@@ -1,13 +1,26 @@
 import styled from "styled-components";
 
 function Statistics() {
-  return <StatsWrapper>Statistics</StatsWrapper>;
+  return (
+    <StatsWrapper>
+      <h2>statistics</h2>
+      <p>total bikes: Number</p>
+      <p>available bikes: Number</p>
+      <p>booked bikes: Number</p>
+      <p>average bike cost: Number UAH/hr.</p>
+    </StatsWrapper>
+  );
 }
 
 export default Statistics;
 
 const StatsWrapper = styled.div`
-  position: absolute;
-  bottom: 5rem;
-  right: 5rem;
+  h2 {
+    text-transform: uppercase;
+  }
+
+  p {
+    text-transform: capitalize;
+    font-size: 14px;
+  }
 `;

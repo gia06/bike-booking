@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Statistics from "./Statistics";
 
 function Form() {
   return (
@@ -13,6 +14,7 @@ function Form() {
       <Button>submit</Button>
       <Button>clear</Button>
       <hr />
+      <Statistics />
     </FormWrapper>
   );
 }
@@ -37,6 +39,7 @@ const FormWrapper = styled.form`
     border: none;
     border-radius: 5px;
     resize: none;
+    outline: none;
 
     &::-webkit-input-placeholder {
       text-transform: capitalize;

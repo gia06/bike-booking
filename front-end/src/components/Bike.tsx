@@ -14,6 +14,11 @@ function Bike() {
           <Status>
             status: <StatusValue>available</StatusValue>
             <img src={triangle} />
+            <select>
+              <option value="available">Available</option>
+              <option value="busy">Busy</option>
+              <option value="unavailable">Unavailable</option>
+            </select>
           </Status>
         </BikeInfo>
 
@@ -100,6 +105,22 @@ const Status = styled.p`
   align-items: center;
   font-size: 14px;
   font-weight: 400;
+
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    font-family: Saira;
+    /* color: #717171; */
+    font-size: 14px;
+    background-image: url(${triangle});
+    background-repeat: no-repeat;
+    background-position: right;
+    border: none;
+    outline: none;
+    width: 90px;
+  }
 
   img {
     margin-left: 3px;

@@ -1,6 +1,6 @@
 import { Config } from "../interfaces/config";
 
-const configs: {
+export const configs: {
   development: Config;
 } = {
   development: {
