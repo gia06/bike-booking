@@ -32,3 +32,5 @@ export interface User {
   price: number;
   description: string;
 }
+
+export type Status = "available" | "busy" | "unavailable";

@@ -1,5 +1,7 @@
 import { Response, NextFunction } from "express";
 import { Context, ExtendedRequest, RouterFactory } from "../interfaces/general";
+import { handleValidations } from "../middlewares/validation/handleValidations";
+import { validationChain } from "../middlewares/validation/chain";
 
 export const makeBikesRouter: RouterFactory = (context: Context) => {
   const {
@@ -21,9 +23,11 @@ export const makeBikesRouter: RouterFactory = (context: Context) => {
 
   router.get(
     "/:id",
+    validationChain(bikeService).findById,
+    handleValidations,
     async (req: ExtendedRequest, res: Response, next: NextFunction) => {
       try {
-        const bike = await bikeService.findOneById(req.params.id);
+        const { bike } = res.locals;
         res.status(200).json(bike);
       } catch (err) {
         next(err);
@@ -33,6 +37,8 @@ export const makeBikesRouter: RouterFactory = (context: Context) => {
 
   router.post(
     "/",
+    validationChain(bikeService).addBike,
+    handleValidations,
     async (req: ExtendedRequest, res: Response, next: NextFunction) => {
       try {
         const bike = await bikeService.save(req.body);
@@ -45,15 +51,20 @@ export const makeBikesRouter: RouterFactory = (context: Context) => {
     }
   );
 
-  // router.put(
-  //   "/:id",
-  //   async (req: ExtendedRequest, res: Response, next: NextFunction) => {
-  //     try {
-  //     } catch (err) {
-  //       next(err);
-  //     }
-  //   }
-  // );
+  router.put(
+    "/:id",
+    validationChain(bikeService).updateStatus,
+    handleValidations,
+    async (req: ExtendedRequest, res: Response, next: NextFunction) => {
+      try {
+        const { bike } = res.locals;
+        await bikeService.updateStatus(bike, req.body.status);
+        res.sendStatus(204);
+      } catch (err) {
+        next(err);
+      }
+    }
+  );
 
   router.delete(
     "/:id",

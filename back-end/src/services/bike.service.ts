@@ -1,4 +1,4 @@
-import { User } from "../interfaces/general";
+import { Status, User } from "../interfaces/general";
 import { BikeModel } from "../models/bike.model";
 import { BikesRepository } from "../repository/bikes.repository";
 
@@ -42,38 +42,28 @@ export class BikesService {
 
   /**
    * Find bike by id
+   * @param {*} id The UserInputId of the bike
+   */
+  async findOneByUserInputId(id: string) {
+    return await this.repository.findOneByUserInputId(id);
+  }
+
+  /**
+   * Update status of single bike by id
+   * @param {*} id The userInputId of the bike
+   * @param {*} status The new status of the bike
+   */
+  async updateStatus(bike: typeof BikeModel, status: Status) {
+    await this.repository.updateStatus(bike, status);
+  }
+
+  /**
+   * Find bike by id
    * @param {*} id The id of the bike
    */
   async findOneById(id: string) {
     return await this.repository.findOneById(id);
   }
-
-  // /**
-  //  * Find  task by title
-  //  * @param {*} title The title of the task
-  //  * @param {*} userId The id of the user
-  //  */
-  // async findByTitle(title, userId) {
-  //   return await tasksRepository.findByTitle(title, userId);
-  // }
-
-  // /**
-  //  * Updates task isDone to true value
-  //  * @param {*} title The title object
-  //  * @param {*} userID The id of the user
-  //  */
-  // async markDone(title, userId) {
-  //   await tasksRepository.markDone(title, userId);
-  // }
-
-  // /**
-  //  * Updates task isDone to true value
-  //  * @param {*} title The title object
-  //  * @param {*} userID The id of the user
-  //  */
-  // async update(oldTitle, newTitle, description, userId) {
-  //   await tasksRepository.update(oldTitle, newTitle, description, userId);
-  // }
 
   /**
    * deletes a task

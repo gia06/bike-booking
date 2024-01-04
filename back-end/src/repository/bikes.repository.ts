@@ -1,4 +1,4 @@
-import { User } from "../interfaces/general";
+import { Status, User } from "../interfaces/general";
 import { BikeModel } from "../models/bike.model";
 
 export class BikesRepository {
@@ -44,6 +44,16 @@ export class BikesRepository {
 
   /**
    * Find single bike by id
+   * @param {*} id The userInputId of the bike
+   */
+  async findOneByUserInputId(id: string) {
+    const bike = await this.bikeModel.findOne({ userInputId: id });
+
+    return bike;
+  }
+
+  /**
+   * Find single bike by id
    * @param {*} id The id of the bike
    */
   async findOneById(id: string) {
@@ -52,45 +62,14 @@ export class BikesRepository {
     return bike;
   }
 
-  // /**
-  //  * Find  task by title
-  //  * @param {*} title The title of the task
-  //  * @param {*} userId The id of the user
-  //  */
-  // async findByTitle(title, userId) {
-  //   const user = await TaskModel.findOne({ belongsTo: userId, title });
-
-  //   return user;
-  // }
-
-  // /**
-  //  * Updates task isDone to true value
-  //  * @param {*} title The title object
-  //  * @param {*} userID The id of the user
-  //  */
-  // async markDone(title, userId) {
-  //   const task = await TaskModel.findOne({ title, belongsTo: userId });
-
-  //   task.done = true;
-  //   await task.save();
-  // }
-
-  // /**
-  //  * Updates task isDone to true value
-  //  * @param {*} title The title object
-  //  * @param {*} userID The id of the user
-  //  */
-  // async update(oldTitle, newTitle, description, userId) {
-  //   const task = await TaskModel.findOne({
-  //     title: oldTitle,
-  //     belongsTo: userId,
-  //   });
-
-  //   task.title = newTitle;
-  //   task.description = description;
-
-  //   await task.save();
-  // }
+  /**
+   * Update status of single bike by id
+   * @param {*} id The userInputId of the bike
+   * @param {*} status The new status of the bike
+   */
+  async updateStatus(bike: typeof BikeModel, status: Status) {
+    await bike.updateOne({ status });
+  }
 
   /**
    * deletes a task

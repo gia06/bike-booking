@@ -10,7 +10,7 @@ export const loadContext = async (models: Models) => {
   return {
     router,
     repository: {
-      bikeRepository: new BikesRepository(models.bikeModel),
+      bikeRepository,
     },
     services: {
       bikeService: new BikesService(bikeRepository),
