@@ -1,13 +1,14 @@
 import styled from "styled-components";
+import { StatisticsComponentProps } from "../types/props";
 
-function Statistics() {
+function Statistics({ bikeStats }: StatisticsComponentProps) {
   return (
     <StatsWrapper>
       <h2>statistics</h2>
-      <p>total bikes: Number</p>
-      <p>available bikes: Number</p>
-      <p>booked bikes: Number</p>
-      <p>average bike cost: Number UAH/hr.</p>
+      <p>total bikes: {bikeStats?.total}</p>
+      <p>available bikes: {bikeStats?.available}</p>
+      <p>booked bikes: {bikeStats?.booked}</p>
+      <p>average bike cost: {bikeStats?.averageCost} UAH/hr.</p>
     </StatsWrapper>
   );
 }

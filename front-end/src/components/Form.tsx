@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import Statistics from "./Statistics";
 
 function Form() {
   return (
-    <FormWrapper>
+    <>
       <Input placeholder="name"></Input>
       <Input placeholder="type"></Input>
       <Input placeholder="color"></Input>
@@ -14,44 +13,11 @@ function Form() {
       <Button>submit</Button>
       <Button>clear</Button>
       <hr />
-      <Statistics />
-    </FormWrapper>
+    </>
   );
 }
 
 export default Form;
-
-const FormWrapper = styled.form`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 50%;
-  height: 252px;
-  padding: 10px;
-  gap: 10px;
-
-  textarea {
-    width: 100%;
-    height: 75px;
-    padding: 5px 16px;
-    background: #e8e8e8;
-    border: none;
-    border-radius: 5px;
-    resize: none;
-    outline: none;
-
-    &::-webkit-input-placeholder {
-      text-transform: capitalize;
-    }
-  }
-
-  hr {
-    width: 100%;
-    margin-top: 6px;
-    background: #c4c4c4;
-  }
-`;
 
 const Input = styled.input`
   width: 49%;
