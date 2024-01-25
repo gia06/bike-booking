@@ -1,12 +1,20 @@
 import styled from "styled-components";
 import Statistics from "./Statistics";
 import { FormComponentProps } from "../types/props";
-import Form from "./Form";
+import InputList from "./InputList";
+import { useForm } from "react-hook-form";
+import { BikeBody } from "../types/Bike";
+import { addBike } from "../services/bike.service";
 
 function DataForm({ bikeStats }: FormComponentProps) {
+  const { handleSubmit, register, reset } = useForm<BikeBody>();
+  // const onSubmit = (data: BikeBody) => {
+  //   console.log(data);
+  // };
+
   return (
-    <DataContainer>
-      <Form />
+    <DataContainer onSubmit={handleSubmit(addBike)}>
+      <InputList register={register} reset={reset} />
       <Statistics bikeStats={bikeStats} />
     </DataContainer>
   );
@@ -43,5 +51,11 @@ const DataContainer = styled.form`
     width: 100%;
     margin-top: 6px;
     background: #c4c4c4;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 `;

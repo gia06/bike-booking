@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BikeData, BikeStatus } from "../types/Bike";
+import { BikeBody, BikeData, BikeStatus } from "../types/Bike";
 import { filterById } from "../utils/counters";
 
 export const updateStatus = async (
@@ -31,6 +31,15 @@ export const removeBike = async (
     const filteredBikes = filterById(bikes, id);
     setBikes(filteredBikes);
     console.log(response.data);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const addBike = async (bike: BikeBody) => {
+  try {
+    await axios.post(`http://localhost:3001/api/bikes`, bike);
+    window.location.reload();
   } catch (error) {
     console.error(error);
   }

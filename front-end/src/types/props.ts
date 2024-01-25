@@ -1,4 +1,5 @@
-import { BikeData, BikeStats } from "./Bike";
+import { UseFormRegister, UseFormReset } from "react-hook-form";
+import { BikeBody, BikeData, BikeStats } from "./Bike";
 
 export interface BikeComponentProps {
   bikes: BikeData;
@@ -10,3 +11,8 @@ export interface FormComponentProps {
 }
 
 export interface StatisticsComponentProps extends FormComponentProps {}
+
+export interface InputListProps {
+  register: UseFormRegister<BikeBody>;
+  reset: UseFormReset<BikeBody>;
+}

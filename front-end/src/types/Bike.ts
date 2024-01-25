@@ -27,3 +27,13 @@ export interface BikeStats {
 export interface BikeStatus {
   [id: string]: string;
 }
+
+export interface BikeBody {
+  name: string;
+  type: string;
+  color: string;
+  wheelSize: number;
+  price: number;
+  description: string;
+  userInputId: string;
+}
