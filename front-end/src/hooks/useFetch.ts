@@ -22,5 +22,5 @@ export const UseFetch = () => {
     setBikeStats({ total, available, booked, averageCost });
   }, [bikes]);
 
-  return { bikes, bikeStats };
+  return { bikes, setBikes, bikeStats };
 };

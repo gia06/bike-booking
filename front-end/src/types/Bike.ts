@@ -1,4 +1,4 @@
-export type BikeStatus = "available" | "busy" | "unavailable";
+export type StatusOptions = "available" | "busy" | "unavailable";
 
 export interface BikeInterface {
   _id: string;
@@ -12,7 +12,7 @@ export interface BikeInterface {
   createdAt: string;
   updatedAt: string;
   __v: number;
-  status: BikeStatus;
+  status: StatusOptions;
 }
 
 export type BikeData = BikeInterface[] | null;
@@ -22,4 +22,8 @@ export interface BikeStats {
   available: number;
   booked: number;
   averageCost: number;
+}
+
+export interface BikeStatus {
+  [id: string]: string;
 }

@@ -2,13 +2,11 @@ import styled from "styled-components";
 import cross from "../assets/cross.svg";
 import triangle from "../assets/triangle.svg";
 import { BikeComponentProps } from "../types/props";
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { removeBike, updateStatus } from "../services/bike.service";
+import { BikeStatus } from "../types/Bike";
 
-function BikeList({ bikes }: BikeComponentProps) {
-  interface BikeStatus {
-    [id: string]: string;
-  }
+function BikeList({ bikes, setBikes }: BikeComponentProps) {
   const [bikeStatus, setBikeStatus] = useState<BikeStatus>({});
 
   useEffect(() => {
@@ -31,23 +29,6 @@ function BikeList({ bikes }: BikeComponentProps) {
     }
   };
 
-  const updateStatus = async (
-    event: React.ChangeEvent<HTMLSelectElement>,
-    id: string
-  ) => {
-    const status = event.target.value;
-    try {
-      const response = await axios.put(
-        `http://localhost:3001/api/bikes/${id}`,
-        { status }
-      );
-      setBikeStatus((prevState) => ({ ...prevState, [id]: status }));
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   return (
     <BikesContainer>
       {bikes?.map((bike) => (
@@ -62,7 +43,11 @@ function BikeList({ bikes }: BikeComponentProps) {
             <Id>id: {bike.userInputId}</Id>
             <Status>
               status:
-              <StatusValue onChange={(e) => updateStatus(e, bike.userInputId)}>
+              <StatusValue
+                onChange={(e) =>
+                  updateStatus(e, bike.userInputId, setBikeStatus)
+                }
+              >
                 <option
                   value="available"
                   selected={bike.status === "available"}
@@ -83,7 +68,10 @@ function BikeList({ bikes }: BikeComponentProps) {
           </BikeInfo>
 
           <BikePrice>
-            <img src={cross} />
+            <img
+              src={cross}
+              onClick={() => removeBike(bikes, setBikes, bike._id)}
+            />
             <p>{+bike.price.toFixed(2)} UAH/HR.</p>
           </BikePrice>
         </BikeItem>
